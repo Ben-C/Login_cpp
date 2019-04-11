@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-//#include "isloggedIN.cpp"
+#include <conio.h>
 #include "countNumbers.cpp"
 
 int login() {
@@ -28,7 +28,11 @@ int login() {
 		bool status = isloggedIN();
 		if (!status)
 		{
-			return 0;		}
+			std::cout << '\a';
+			std::cout << "Login failed, please try again!" << std::endl;
+			getch();
+			return 0;	
+		}
 		else
 		{
 			return countNumbers();
