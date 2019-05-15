@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "login.cpp"
 
 bool isloggedIN()
 {
@@ -21,6 +20,5 @@ bool isloggedIN()
 	{
 		return false;
 	}
-}
 return 0;
 }
