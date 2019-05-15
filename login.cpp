@@ -5,45 +5,50 @@
 #include "countNumbers.cpp"
 #include "isloggedIN.cpp"
 
-int login() {
-	int choice;
+int def(){
+	std::cout << '\a';
+	std::cout << "Choice not recognised programme will now terminate.";
+	return 0;
+}
+
+int checkLogin(){
 	std::string userName, userPass;
 	std::ofstream file;
-    bool isloggedIN();
-	std::cout << "1: Register\n2: Login\n"; std::cin >> choice;
-	if ((choice != 1)&&(choice != 2))
-	{
-		std::cout << '\a';
-		std::cout << "Choice not recognised programme will now terminate.";
-		return 0;
-	}
-	else
-	{
-		switch (choice)	{
-			case 1:
-				std::cout << "select a username: \n"; std::cin >> userName;
-				std::cout << "select a password: \n"; std::cin >> userPass;
-				file.open(".\\username.txt");
-				file << userName << std::endl << userPass;
-				file.close();
-				return login();
-				
-			break;
-				
-			case 2:
-				bool status = isloggedIN();
-				if (!status)
-				{
-					std::cout << '\a';
-					std::cout << "Login failed, programme will now terminate!" << std::endl;
-					getch();
-					return 0;	
-				}
-				else
-				{
-					return countNumbers();
-				}
-			}	
+	std::cout << "select a username: \n"; std::cin >> userName;
+	std::cout << "select a password: \n"; std::cin >> userPass;
+	file.open(".\\username.txt");
+	file << userName << std::endl << userPass;
+	file.close();
+	return 0;
+}
+int loginFailed(){
+	bool status = isloggedIN();
+		if (!status)
+		{
+			std::cout << '\a';
+			std::cout << "Login failed, programme will now terminate!" << std::endl;
+			getch();
+			return 0;	
 		}
+		else
+		{
+			return countNumbers();
+		}
+}
+
+int login() {
+	int choice;
+	bool isloggedIN();
+	std::cout << "1: Register\n2: Login\n"; std::cin >> choice;
+	switch (choice)	{
+		default:
+			def();
+		break;
+		case 1:
+			checkLogin();
+		break;
+		case 2:
+			loginFailed();
+		}	
 	return 0;
 }
