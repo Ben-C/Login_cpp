@@ -5,6 +5,5 @@
 
 int main(){
 	int login();
-	int countNumbers();
 	return login();	
 }
