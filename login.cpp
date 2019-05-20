@@ -3,7 +3,6 @@
 #include <string>
 #include <conio.h>
 #include "countNumbers.cpp"
-#include "isloggedIN.cpp"
 
 int def(){
 	std::cout << '\a';
@@ -16,13 +15,11 @@ int regUser(){
 	while(cont = true){
 	std::string userName, userPass;
 	std::cout << "select a username: \n"; std::cin >> userName;
-	getline(std::cin, userName);
 	std::cout << "select a password: \n"; std::cin >> userPass;
-	getline(std::cin, userPass);
-	std::ofstream file;
-	file.open(".\\username.txt", std::ios::app | std::ios::out);
-	file << userName << "," << userPass << std::endl;
-	file.close();
+	std::ofstream uLog;
+	uLog.open("username.csv", std::ios::app | std::ios::out);
+	uLog << userName << "," << userPass << std::endl;
+	uLog.close();
 	std::cout << "Would you like to Enter another user? Y/N" << std::endl;
 	std::string userChoice;
 	std::cin >> userChoice;
@@ -40,7 +37,7 @@ void checkLogin(){
 	std::cout << "Enter your username: \n"; std::cin >> userName;
 	std::cout << "Enter your password: \n"; std::cin >> userPass;
 	
-	std::ifstream userLog(".\\username.txt");
+	std::ifstream userLog("username.csv", std::ios::in);
 	if (userLog.is_open()){
 		while (!userLog.eof()){
 			std::string uN, uP;
