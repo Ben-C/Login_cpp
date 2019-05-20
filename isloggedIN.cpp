@@ -4,15 +4,16 @@
 
 bool isloggedIN()
 {
-	std::string userName, userPass, uN, uP;
+	std::string userName, userPass;
 	std::cout << "select a username: \n"; std::cin >> userName;
 	std::cout << "select a password: \n"; std::cin >> userPass;
 	
 	std::ifstream read(".\\username.txt");
-	getline(read, uN);
-	getline(read, uP); 
-
-	if (uN == userName && uP == userPass)
+	while (!read.eof())
+	{
+		std::string uN, uP;
+		read >> uN >> uP;
+		if (uN == userName && uP == userPass)
 	{
 		return true;
 	}
@@ -20,5 +21,6 @@ bool isloggedIN()
 	{
 		return false;
 	}
-return 0;
-}
+
+	}
+return 0;}
